@@ -1,4 +1,4 @@
-<p>usage: mqttForTerminal [-h] [-t TOPIC] [-m MESSAGE] [-r]</p>
+<p><strong>usage: mqttForTerminal [-h] [-t TOPIC] [-m MESSAGE] [-r]</strong></p>
 <p>options:</p>
 <div>
 	<table>
@@ -20,3 +20,10 @@
 		</tr>
 	</table>
 </div>
+<br>
+<p><strong>Examples</strong></p>
+<p>./mqttForTerminal -t mqttTerminal/mytopic -m "Hi"</p>
+<p>Response: OK</p>
+<br>
+<p>./mqttForTerminal -t mqttTerminal/mytopic -r</p>
+<p>Response: Hi</p>
