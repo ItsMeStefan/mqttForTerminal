@@ -1,12 +1,18 @@
+#!/usr/bin/python
 import argparse
 import paho.mqtt.client as mqtt
 import time
 import sys
 
+USER = "user"
+PW = "password"
+IP = "192.168.0.100"
+PORT = 1883
+
 def send_mqtt_message(topic, message):
-    client = mqtt.Client()
-    client.username_pw_set("mqttuser", "beispielpw")
-    client.connect("192.168.178.1", 1883)
+    client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
+    client.username_pw_set(USER, PW)
+    client.connect(IP, PORT)
     result, _ = client.publish(topic, message)
     client.disconnect()
     return "OK" if result == mqtt.MQTT_ERR_SUCCESS else "Fehler"
@@ -22,9 +28,9 @@ def read_mqtt_message(topic):
             client.disconnect()
             message_received = True
 
-    client = mqtt.Client()
-    client.username_pw_set("mqttuser", "beispielpw")
-    client.connect("192.168.178.1", 1883)
+    client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
+    client.username_pw_set(USER, PW)
+    client.connect(IP, PORT)
     client.subscribe(topic)
     client.on_message = on_message
     client.loop_start()
