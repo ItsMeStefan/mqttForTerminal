@@ -10,7 +10,7 @@ IP = "192.168.0.100"
 PORT = 1883
 
 def send_mqtt_message(topic, message):
-    client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
+    client = mqtt.Client()
     client.username_pw_set(USER, PW)
     client.connect(IP, PORT)
     result, _ = client.publish(topic, message)
@@ -28,7 +28,7 @@ def read_mqtt_message(topic):
             client.disconnect()
             message_received = True
 
-    client = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION2)
+    client = mqtt.Client()
     client.username_pw_set(USER, PW)
     client.connect(IP, PORT)
     client.subscribe(topic)
